@@ -1,0 +1,52 @@
+# -----------------------------------------------------------------
+# We're assuming that ssh authentication has already been used, this
+# is more risky than I'm comfortable with, but it saves the problem 
+# of managing a separate password file.
+# -----------------------------------------------------------------
+Defaults	!authenticate
+
+# -----------------------------------------------------------------
+# No surpise... root has universal access
+# -----------------------------------------------------------------
+root		ALL = (ALL) ALL
+
+# -----------------------------------------------------------------
+# ADMIN_CMDS are those available to PlanetLab administrators
+# -----------------------------------------------------------------
+Cmnd_Alias	ADMIN_CMDS =	/usr/local/planetlab/bin/pl-ps, \
+				/usr/local/planetlab/bin/pl-catlogs, \
+				/usr/local/planetlab/bin/pl-limitbw, \
+				/usr/local/planetlab/bin/pl-kill, \
+                                /usr/local/planetlab/bin/pl-sanetop, \
+                                /usr/sbin/tcpdump, \
+				/usr/local/planetlab/bin/tcpdumpkill, \
+				/sbin/shutdown, \
+				/usr/local/planetlab/bin/tc, \
+                                /etc/init.d/vserver-init, \
+                                /usr/local/planetlab/bin/NodeUpdate.py, \
+                                /usr/local/planetlab/bin/PlanetLabConf.py, \
+                                /usr/local/planetlab/bin/PlanetLabKeys.py, \
+                                /etc/init.d/ntpd, \
+                                /usr/sbin/ntpdate
+
+
+# -----------------------------------------------------------------
+# SITE_CMDS are those available to local site administrators
+# -----------------------------------------------------------------
+Cmnd_Alias	SITE_CMDS =	/usr/local/planetlab/bin/pl-ps, \
+				/usr/local/planetlab/bin/pl-catlogs, \
+				/usr/local/planetlab/bin/pl-limitbw, \
+                                /usr/sbin/tcpdump, \
+				/sbin/shutdown, \
+				/usr/bin/passwd -d site_admin, \
+				/usr/bin/passwd site_admin
+
+# -----------------------------------------------------------------
+# PLADMINS -- accounts with admin privileges on all nodes
+# -----------------------------------------------------------------
+pl_admin	ALL = ADMIN_CMDS
+
+# -----------------------------------------------------------------
+# Site Admins -- accounts with admin privileges on the local nodes
+# -----------------------------------------------------------------
+site_admin	ALL = SITE_CMDS

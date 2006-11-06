@@ -1,0 +1,22 @@
+#
+# /etc/sysconfig/iptables
+#
+# post: service iptables restart
+#
+# PlanetLab standard filter chains
+#
+# $Id: iptables,v 1.2 2005/06/03 13:36:09 alk Exp $
+#
+
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:BLACKLIST - [0:0]
+:LOGDROP - [0:0]
+
+-A OUTPUT -j BLACKLIST
+-A LOGDROP -j LOG
+-A LOGDROP -j DROP
+
+COMMIT

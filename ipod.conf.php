@@ -1,0 +1,23 @@
+<?php
+//
+// /etc/ipod.conf for production nodes
+//
+// Mark Huang <mlhuang@cs.princeton.edu>
+// Copyright (C) 2004-2006 The Trustees of Princeton University
+//
+// $Id: ipod.conf.php,v 1.1 2006/04/07 19:29:04 mlhuang Exp $
+//
+
+include('plc_config.php');
+
+// Allow only the API server to send a reboot packet
+$IP_SUBNET = gethostbyname(PLC_API_HOST);
+
+echo <<<EOF
+# IP range that we respond to reboot requests from
+IP_SUBNET=$IP_SUBNET
+IP_MASK=255.255.255.255
+
+EOF;
+
+?>

@@ -1,0 +1,6 @@
+server clock.redhat.com minpoll 5 burst
+server time.apple.com minpoll 5 burst
+server pool.ntp.org minpoll 5 burst
+server mit-main.ron.lcs.mit.edu minpoll 5 burst
+server ucsd.ron.lcs.mit.edu minpoll 5 burst
+server utah.ron.lcs.mit.edu  minpoll 5 burst
