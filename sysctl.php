@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2006 The Trustees of Princeton University
 //
-// $Id$
+// $Id: sysctl.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
 //
 
 // Get admin API handle
@@ -15,7 +15,7 @@ global $adm;
 $ip_forward = 0;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array($_SERVER['REMOTE_ADDR']));
+$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
 if (!empty($nodenetworks)) {
   $nodes = $adm->GetNodes(array($nodenetworks[0]['node_id']));
   if (!empty($nodes)) {

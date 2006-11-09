@@ -9,7 +9,7 @@
 # Mark Huang <mlhuang@cs.princeton.edu>
 # Copyright (C) 2004 The Trustees of Princeton University
 #
-# $Id: proxies.php,v 1.8 2005/10/07 17:55:41 mlhuang Exp $
+# $Id: proxies.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
 #
 
 <?php
@@ -18,7 +18,7 @@ require_once 'plc_api.php';
 global $adm;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array($_SERVER['REMOTE_ADDR']));
+$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
 if (!empty($nodenetworks)) {
   $nodes = $adm->GetNodes(array($nodenetworks[0]['node_id']));
   if (!empty($nodes)) {

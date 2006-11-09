@@ -7,7 +7,7 @@
 //
 // Copyright (C) 2006 The Trustees of Princeton University
 //
-// $Id$
+// $Id: getupdatesxml.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
 //
 
 // Get admin API handle
@@ -80,7 +80,7 @@ function xmlspecialchars($string, $parsed = ENT_UNPARSED)
 if (!empty($_REQUEST['node_id'])) {
   $nodes = $adm->GetSlivers(array(intval($_REQUEST['node_id'])));
 } else {
-  $nodenetworks = $adm->GetNodeNetworks(array($_SERVER['REMOTE_ADDR']));
+  $nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
   if (!empty($nodenetworks)) {
     $nodes = $adm->GetSlivers(array($nodenetworks[0]['node_id']));
   }

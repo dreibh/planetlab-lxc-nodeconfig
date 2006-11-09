@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2006 The Trustees of Princeton University
 //
-// $Id$
+// $Id: bwlimit.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
 //
 
 // Get admin API handle
@@ -13,7 +13,7 @@ require_once 'plc_api.php';
 global $adm;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array($_SERVER['REMOTE_ADDR']));
+$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
 if (!empty($nodenetworks)) {
   if ($nodenetworks[0]['bwlimit'] !== NULL) {
     $rate = $nodenetworks[0]['bwlimit'];

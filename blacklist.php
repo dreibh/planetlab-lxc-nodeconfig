@@ -9,7 +9,7 @@
 # Mark Huang <mlhuang@cs.princeton.edu>
 # Copyright (C) 2004 The Trustees of Princeton University
 #
-# $Id: blacklist.php,v 1.5 2005/10/04 18:04:59 alk Exp $
+# $Id: blacklist.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
 #
 
 *filter
@@ -22,7 +22,7 @@ require_once 'plc_api.php';
 global $adm;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array($_SERVER['REMOTE_ADDR']));
+$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
 if (!empty($nodenetworks)) {
   $nodes = $adm->GetNodes(array($nodenetworks[0]['node_id']));
   if (!empty($nodes)) {
