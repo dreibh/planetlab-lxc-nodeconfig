@@ -11,40 +11,21 @@ Defaults	!authenticate
 root		ALL = (ALL) ALL
 
 # -----------------------------------------------------------------
-# ADMIN_CMDS are those available to PlanetLab administrators
-# -----------------------------------------------------------------
-Cmnd_Alias	ADMIN_CMDS =	/usr/local/planetlab/bin/pl-ps, \
-				/usr/local/planetlab/bin/pl-catlogs, \
-				/usr/local/planetlab/bin/pl-limitbw, \
-				/usr/local/planetlab/bin/pl-kill, \
-                                /usr/local/planetlab/bin/pl-sanetop, \
-                                /usr/sbin/tcpdump, \
-				/usr/local/planetlab/bin/tcpdumpkill, \
-				/sbin/shutdown, \
-				/usr/local/planetlab/bin/tc, \
-                                /etc/init.d/vserver-init, \
-                                /usr/local/planetlab/bin/NodeUpdate.py, \
-                                /usr/local/planetlab/bin/PlanetLabConf.py, \
-                                /usr/local/planetlab/bin/PlanetLabKeys.py, \
-                                /etc/init.d/ntpd, \
-                                /usr/sbin/ntpdate
-
-
-# -----------------------------------------------------------------
 # SITE_CMDS are those available to local site administrators
 # -----------------------------------------------------------------
-Cmnd_Alias	SITE_CMDS =	/usr/local/planetlab/bin/pl-ps, \
-				/usr/local/planetlab/bin/pl-catlogs, \
-				/usr/local/planetlab/bin/pl-limitbw, \
+Cmnd_Alias	SITE_CMDS =	/usr/sbin/vps, \
+				/usr/sbin/vpstree, \
+				/usr/sbin/vtop, \
+				/bin/ps, \
+				/usr/bin/pstree, \
+				/usr/bin/top, \
                                 /usr/sbin/tcpdump, \
+                                /usr/bin/pfgrep, \
+				/sbin/halt, \
+				/sbin/reboot, \
 				/sbin/shutdown, \
 				/usr/bin/passwd -d site_admin, \
 				/usr/bin/passwd site_admin
-
-# -----------------------------------------------------------------
-# PLADMINS -- accounts with admin privileges on all nodes
-# -----------------------------------------------------------------
-pl_admin	ALL = ADMIN_CMDS
 
 # -----------------------------------------------------------------
 # Site Admins -- accounts with admin privileges on the local nodes
