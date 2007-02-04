@@ -6,7 +6,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2006 The Trustees of Princeton University
 //
-// $Id: get_plc_config.php,v 1.7 2006/05/08 21:45:29 mlhuang Exp $
+// $Id: get_plc_config.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
 //
 
 // Try the new plc_config.php file first
@@ -44,6 +44,9 @@ foreach (array('PLC_API_HOST', 'PLC_API_PATH', 'PLC_API_PORT',
     printf($format, $name, $value);
   }
 }
+
+printf($format, 'PLC_API_CA_SSL_CRT', "'/usr/boot/cacert.pem'");
+printf($format, 'PLC_ROOT_GPG_KEY_PUB', "'/usr/boot/pubring.gpg'");
 
 echo $end . "\n";
 
