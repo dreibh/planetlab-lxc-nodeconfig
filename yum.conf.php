@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2004-2006 The Trustees of Princeton University
 //
-// $Id: yum.conf.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
+// $Id: yum.conf.php,v 1.2 2007/02/06 15:52:26 mlhuang Exp $
 //
 
 // For PLC_NAME and PLC_BOOT_HOST
@@ -14,7 +14,9 @@ include('plc_config.php');
 $PLC_NAME = PLC_NAME;
 $PLC_BOOT_HOST = PLC_BOOT_HOST;
 
-$repos = array(array('ThirdParty', 'Third Party RPMS', '3rdparty'));
+$repos = array(array('FedoraCore2Base', 'Fedora Core 2 Base', 'stock-fc2'),
+	       array('FedoraCore2Updates', 'Fedora Core 2 Updates', 'updates-fc2'),
+	       array('ThirdParty', 'Third Party RPMS', '3rdparty'));
 
 if (isset($_REQUEST['alpha'])) {
   $repos[] = array('PlanetLabAlpha', 'PlanetLab Alpha RPMS', 'planetlab-alpha');
