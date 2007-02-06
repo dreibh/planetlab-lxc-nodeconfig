@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2004-2006 The Trustees of Princeton University
 //
-// $Id: yum.conf.php,v 1.2 2007/02/06 15:52:26 mlhuang Exp $
+// $Id: yum.conf.php,v 1.3 2007/02/06 19:00:57 mlhuang Exp $
 //
 
 // For PLC_NAME and PLC_BOOT_HOST
@@ -85,16 +85,22 @@ gpgcheck=$gpgcheck
 name=Fedora Core \$releasever - \$basearch - Base
 mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=base&releasever=\$releasever
 gpgcheck=$gpgcheck
+# PlanetLab builds its own versions of these tools
+exclude=iptables kernel kernel kernel-devel kernel-smp kernel-smp-devel kernel-xen0 kernel-xen0-devel kernel-xenU kernel-xenU-devel mysql ulogd
 
 [updates]
 name=Fedora Core \$releasever - \$basearch - Released Updates
 mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=updates&releasever=\$releasever
 gpgcheck=$gpgcheck
+# PlanetLab builds its own versions of these tools
+exclude=iptables kernel kernel kernel-devel kernel-smp kernel-smp-devel kernel-xen0 kernel-xen0-devel kernel-xenU kernel-xenU-devel mysql ulogd
 
 [extras]
 name=Fedora Extras \$releasever - \$basearch
 mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=extras&releasever=\$releasever
 gpgcheck=$gpgcheck
+# PlanetLab builds its own versions of these tools
+exclude=iptables kernel kernel kernel-devel kernel-smp kernel-smp-devel kernel-xen0 kernel-xen0-devel kernel-xenU kernel-xenU-devel mysql ulogd
 
 
 EOF;
