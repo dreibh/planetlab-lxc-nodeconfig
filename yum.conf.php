@@ -5,22 +5,19 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2004-2006 The Trustees of Princeton University
 //
-// $Id: yum.conf.php,v 1.3 2006/05/18 23:09:43 mlhuang Exp $
+// $Id: yum.conf.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
 //
 
 // For PLC_NAME and PLC_BOOT_HOST
 include('plc_config.php');
 
 $PLC_NAME = PLC_NAME;
-$BOOT_BASE = PLC_BOOT_HOST;
+$PLC_BOOT_HOST = PLC_BOOT_HOST;
 
-$repos = array(array('FedoraCore2Base', 'Fedora Core 2 Base', 'stock-fc2'),
-	       array('FedoraCore2Updates', 'Fedora Core 2 Updates', 'updates-fc2'),
-	       array('ThirdParty', 'Third Party RPMS', '3rdparty'));
+$repos = array(array('ThirdParty', 'Third Party RPMS', '3rdparty'));
 
 if (isset($_REQUEST['alpha'])) {
   $repos[] = array('PlanetLabAlpha', 'PlanetLab Alpha RPMS', 'planetlab-alpha');
-  $repos[] = array('FedoraCore2Testing', 'Fedora Core 2 Testing', 'testing-fc2');
 } elseif (isset($_REQUEST['beta'])) {
   $repos[] = array('PlanetLabBeta', 'PlanetLab Beta RPMS', 'planetlab-beta');
 } elseif (isset($_REQUEST['rollout'])) {
@@ -35,15 +32,66 @@ if (isset($_REQUEST['gpgcheck'])) {
   $gpgcheck = 0;
 }
 
+// Requesting a mirror list. Yum bombs out completely if a repository
+// is (even temporarily) unavailable, so if CoBlitz is down, provide a
+// few more options. Make sure that gpgcheck remains enabled.  Last
+// chance option is ourselves so that yum never fails.
+if (isset($_REQUEST['mirrorlist']) &&
+    isset($_REQUEST['repo']) &&
+    isset($_REQUEST['releasever'])) {
+  $mirrors = array("http://coblitz.planet-lab.org/pub/fedora/linux",
+		   "http://fedora.gtlib.cc.gatech.edu/pub/fedora.redhat/linux",
+		   "http://download.fedoraproject.org/pub/fedora/linux",
+		   "ftp://rpmfind.net/linux/fedora",
+		   "http://mirrors.kernel.org/fedora");
+  $releasever = $_REQUEST['releasever'];
+  switch ($_REQUEST['repo']) {
+  case "base":
+    foreach ($mirrors as $mirror) {
+      echo "$mirror/core/$releasever/\$ARCH/os/\n";
+    }
+    break;
+  case "updates":
+    foreach ($mirrors as $mirror) {
+      echo "$mirror/core/updates/$releasever/\$ARCH/\n";
+    }
+    break;
+  case "extras":
+    foreach ($mirrors as $mirror) {
+      echo "$mirror/extras/$releasever/\$ARCH/\n";
+    }
+    break;
+  }
+
+  // Always list ourselves last
+  echo "http://$PLC_BOOT_HOST/install-rpms/planetlab/\n";
+  exit;
+}
+
+// Requesting yum.conf. See above for the mirrorlist definition.
 echo <<<EOF
 [main]
-### for yum-2.4 in fc4 (this will be ignored by yum-2.0)
-### everything in here, do not scan /etc/yum.repos.d/
+# Do not scan /etc/yum.repos.d/
 reposdir=/dev/null
 cachedir=/var/cache/yum
 debuglevel=2
 logfile=/var/log/yum.log
 pkgpolicy=newest
+gpgcheck=$gpgcheck
+
+[base]
+name=Fedora Core \$releasever - \$basearch - Base
+mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=base&releasever=\$releasever
+gpgcheck=$gpgcheck
+
+[updates]
+name=Fedora Core \$releasever - \$basearch - Released Updates
+mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=updates&releasever=\$releasever
+gpgcheck=$gpgcheck
+
+[extras]
+name=Fedora Extras \$releasever - \$basearch
+mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=extras&releasever=\$releasever
 gpgcheck=$gpgcheck
 
 
@@ -56,7 +104,7 @@ foreach ($repos as $repo) {
   $id = $repo[0];
   $name = $repo[1] . " -- " . "$PLC_NAME Central";
   $dir = "/install-rpms/" . $repo[2];
-  $baseurl = "http://$BOOT_BASE" . $dir . "/";
+  $baseurl = "http://$PLC_BOOT_HOST" . $dir . "/";
 
   if (is_dir(realpath($_SERVER['DOCUMENT_ROOT'] . $dir))) {
     echo <<<EOF
