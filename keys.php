@@ -13,7 +13,7 @@
 // Aaron Klingaman <alk@cs.princeton.edu>
 // Copyright (C) 2004 The Trustees of Princeton University
 //
-// $Id: keys.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
+// $Id: keys.php,v 1.2 2006/11/09 20:21:43 mlhuang Exp $
 //
 
 // Get admin API handle
@@ -43,23 +43,18 @@ if (isset($_REQUEST['site_admin'])) {
       $node = $nodes[0];
     }
   }
-  
   if (isset($node)) {
     // Look up the site
     $sites = $adm->GetSites(array($node['site_id']));
+    // Can't filter on roles so have to bruit force through entire userlist of site.
     if ($sites && $sites[0]['person_ids']) {
-      // XXX Implement API query filters
-      // $persons = $adm->GetPersons(array('person_id' => $sites[0]['person_ids'],
-      //				   'roles' => array('pi')));
-      // $persons += $adm->GetPersons(array('person_id' => $sites[0]['person_ids'],
-      //				    'roles' => array('tech')));
       $all_persons = $adm->GetPersons($sites[0]['person_ids']);
       foreach ($all_persons as $person) {
-	if (in_array('pi', $person['roles']) ||
-	    in_array('tech', $person['roles'])) {
-	  $persons[] = $person;
-	}
-      }
+	    if ((in_array('pi', $person['roles']) || in_array('tech', $person['roles'])) && 
+        $person['enabled']) {
+          $persons[] = $person; 
+        }
+	  }
     }
   }
 }
@@ -68,14 +63,15 @@ if (isset($_REQUEST['root'])) {
   $keys[] = array('key' => file_get_contents(PLC_ROOT_SSH_KEY_PUB));
 }
 
+
 if (!empty($persons)) {
   $key_ids = array();
   foreach ($persons as $person) {
-    $key_ids = $key_ids + $person['key_ids'];
+    $key_ids[] = $person['key_ids'][0];
   }
 
   if (!empty($key_ids)) {
-    $keys = $keys + $adm->GetKeys($key_ids);
+    $keys = $adm->GetKeys($key_ids);
   }
 }
 
