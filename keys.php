@@ -67,9 +67,10 @@ if (isset($_REQUEST['root'])) {
 if (!empty($persons)) {
   $key_ids = array();
   foreach ($persons as $person) {
-    $key_ids[] = $person['key_ids'][0];
+  	if ($person['key_ids']) {
+      $key_ids[] = $person['key_ids'][0];
+	}
   }
-
   if (!empty($key_ids)) {
     $keys = $adm->GetKeys($key_ids);
   }
