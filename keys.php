@@ -77,7 +77,7 @@ if (!empty($persons)) {
 }
 
 foreach ($keys as $key) {
-  print $key['key'];
+  print $key['key']. "\n";
 }
 
 ?>
