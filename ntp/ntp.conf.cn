@@ -1,0 +1,5 @@
+server s2a.time.edu.cn
+server s2b.time.edu.cn
+server clock.redhat.com
+server time.apple.com
+server pool.ntp.org

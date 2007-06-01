@@ -1,0 +1,5 @@
+server ntp2a.mcc.ac.uk
+server ntp2b.mcc.ac.uk
+server ntp.exnet.com
+server bear.zoo.bt.co.uk
+server ntp.cis.strath.ac.uk

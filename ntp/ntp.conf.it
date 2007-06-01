@@ -1,0 +1,6 @@
+server clock.redhat.com
+server time.apple.com
+server pool.ntp.org
+server mit-main.ron.lcs.mit.edu
+server ucsd.ron.lcs.mit.edu
+server utah.ron.lcs.mit.edu

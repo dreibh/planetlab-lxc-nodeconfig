@@ -1,0 +1,5 @@
+server ntp0.bbk.ac.uk
+server ntp1.bbk.ac.uk
+server ntp.exnet.com
+server bear.zoo.bt.co.uk
+server ntp.cis.strath.ac.uk

@@ -1,0 +1,6 @@
+server ntp.univ-lyon1.fr minpoll 5
+server ntp1.tuxfamily.net minpoll 5
+server ntp2.tuxfamily.net minpoll 5
+server ntp1.theinternetone.net minpoll 5
+server ntp2.theinternetone.net minpoll 5
+server ntp3.theinternetone.net minpoll 5

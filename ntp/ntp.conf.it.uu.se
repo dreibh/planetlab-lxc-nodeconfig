@@ -1,0 +1,12 @@
+# node planetlab-1.it.uu.se site Uppsala 59.8581 17.6446
+driftfile /var/lib/ntp/ntp.drift
+statsdir /var/log/ntpstats/
+statistics loopstats peerstats clockstats
+filegen loopstats file loopstats type day enable
+filegen peerstats file peerstats type day enable
+filegen clockstats file clockstats type day enable
+server 193.10.133.1
+#peer planetlab-2.it.uu.se
+#peer planetlab1.sics.se
+#peer planetlab2.sics.se
+
