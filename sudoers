@@ -21,6 +21,7 @@ Cmnd_Alias	SITE_CMDS =	/usr/sbin/vps, \
 				/usr/bin/top, \
                                 /usr/sbin/tcpdump, \
                                 /usr/bin/pfgrep, \
+								/usr/local/planetlab/bin/pl-catlogs, \
 				/sbin/halt, \
 				/sbin/reboot, \
 				/sbin/shutdown, \
