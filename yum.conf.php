@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2004-2006 The Trustees of Princeton University
 //
-// $Id: yum.conf.php,v 1.4 2007/02/06 21:29:13 mlhuang Exp $
+// $Id: yum.conf.php,v 1.5 2007/03/22 17:57:23 faiyaza Exp $
 //
 
 // For PLC_NAME and PLC_BOOT_HOST
@@ -69,7 +69,7 @@ if (isset($_REQUEST['mirrorlist']) &&
   }
 
   // Always list ourselves last
-  echo "http://$PLC_BOOT_HOST/install-rpms/planetlab/\n";
+  echo "https://$PLC_BOOT_HOST/install-rpms/planetlab/\n";
   exit;
 }
 
@@ -86,21 +86,21 @@ gpgcheck=$gpgcheck
 
 [base]
 name=Fedora Core \$releasever - \$basearch - Base
-mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=base&releasever=\$releasever
+mirrorlist=https://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=base&releasever=\$releasever
 gpgcheck=$gpgcheck
 # PlanetLab builds its own versions of these tools
 exclude=iptables kernel kernel kernel-devel kernel-smp kernel-smp-devel kernel-xen0 kernel-xen0-devel kernel-xenU kernel-xenU-devel mysql ulogd
 
 [updates]
 name=Fedora Core \$releasever - \$basearch - Released Updates
-mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=updates&releasever=\$releasever
+mirrorlist=https://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=updates&releasever=\$releasever
 gpgcheck=$gpgcheck
 # PlanetLab builds its own versions of these tools
 exclude=iptables kernel kernel kernel-devel kernel-smp kernel-smp-devel kernel-xen0 kernel-xen0-devel kernel-xenU kernel-xenU-devel mysql ulogd
 
 [extras]
 name=Fedora Extras \$releasever - \$basearch
-mirrorlist=http://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=extras&releasever=\$releasever
+mirrorlist=https://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=extras&releasever=\$releasever
 gpgcheck=$gpgcheck
 # PlanetLab builds its own versions of these tools
 exclude=iptables kernel kernel kernel-devel kernel-smp kernel-smp-devel kernel-xen0 kernel-xen0-devel kernel-xenU kernel-xenU-devel mysql ulogd
@@ -115,7 +115,7 @@ foreach ($repos as $repo) {
   $id = $repo[0];
   $name = $repo[1] . " -- " . "$PLC_NAME Central";
   $dir = "/install-rpms/" . $repo[2];
-  $baseurl = "http://$PLC_BOOT_HOST" . $dir . "/";
+  $baseurl = "https://$PLC_BOOT_HOST" . $dir . "/";
 
   if (is_dir(realpath($_SERVER['DOCUMENT_ROOT'] . $dir))) {
     echo <<<EOF
