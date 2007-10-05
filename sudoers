@@ -19,14 +19,16 @@ Cmnd_Alias	SITE_CMDS =	/usr/sbin/vps, \
 				/bin/ps, \
 				/usr/bin/pstree, \
 				/usr/bin/top, \
-                                /usr/sbin/tcpdump, \
-                                /usr/bin/pfgrep, \
-								/usr/local/planetlab/bin/pl-catlogs, \
+				/usr/sbin/tcpdump, \
+				/usr/bin/pfgrep, \
+				/usr/local/planetlab/bin/pl-catlogs, \
 				/sbin/halt, \
 				/sbin/reboot, \
 				/sbin/shutdown, \
 				/usr/bin/passwd -d site_admin, \
-				/usr/bin/passwd site_admin
+				/usr/bin/passwd site_admin, \
+				/bin/more /var/log/messages, \
+				/bin/more /var/log/nm
 
 # -----------------------------------------------------------------
 # Site Admins -- accounts with admin privileges on the local nodes
