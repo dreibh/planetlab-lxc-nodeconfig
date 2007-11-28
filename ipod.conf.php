@@ -11,12 +11,13 @@
 include('plc_config.php');
 
 // Allow only the API server to send a reboot packet
-$IP_SUBNET = gethostbyname(PLC_API_HOST);
+$IP_SUBNET = PLC_API_IPOD_SUBNET;
+$IP_MASK   = PLC_API_IPOD_MASK;
 
 echo <<<EOF
 # IP range that we respond to reboot requests from
 IP_SUBNET=$IP_SUBNET
-IP_MASK=255.255.255.255
+IP_MASK=$IP_MASK
 
 EOF;
 
