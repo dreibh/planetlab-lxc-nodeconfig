@@ -60,3 +60,6 @@ net.ipv4.tcp_window_scaling=0
 # Mark only out of window RST segments as INVALID. This setting, among
 # other things, allows data to be sent with SYN packets.
 net.ipv4.netfilter.ip_conntrack_tcp_be_liberal=1
+
+# Fixes dst cache overflow bug
+net.ipv4.route.max_size=262144
