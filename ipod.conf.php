@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2004-2006 The Trustees of Princeton University
 //
-// $Id: ipod.conf.php,v 1.1 2006/04/07 19:29:04 mlhuang Exp $
+// $Id$
 //
 
 include('plc_config.php');

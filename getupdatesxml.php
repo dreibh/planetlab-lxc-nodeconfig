@@ -7,7 +7,7 @@
 //
 // Copyright (C) 2006 The Trustees of Princeton University
 //
-// $Id: getupdatesxml.php,v 1.2 2006/11/09 20:21:43 mlhuang Exp $
+// $Id$
 //
 
 // Get admin API handle

@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2004-2006 The Trustees of Princeton University
 //
-// $Id: issue.php,v 1.1 2006/04/07 18:44:04 mlhuang Exp $
+// $Id$
 //
 
 // For PLC_NAME, etc.

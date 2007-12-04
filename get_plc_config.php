@@ -6,7 +6,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2006 The Trustees of Princeton University
 //
-// $Id: get_plc_config.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
+// $Id$
 //
 
 // Try the new plc_config.php file first

@@ -39,6 +39,8 @@ if (!empty($nodenetworks)) {
 # For binary values, 0 is disabled, 1 is enabled.  See sysctl(8) and
 # sysctl.conf(5) for more details.
 
+# $Id$
+
 # Controls IP packet forwarding
 net.ipv4.ip_forward = <?php echo $ip_forward; ?>
 

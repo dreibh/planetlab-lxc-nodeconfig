@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2006 The Trustees of Princeton University
 //
-// $Id: get_gpg_key.php,v 1.1 2006/05/08 18:53:30 mlhuang Exp $
+// $Id$
 //
 
 include 'plc_config.php';

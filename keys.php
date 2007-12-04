@@ -13,7 +13,7 @@
 // Aaron Klingaman <alk@cs.princeton.edu>
 // Copyright (C) 2004 The Trustees of Princeton University
 //
-// $Id: keys.php,v 1.2 2006/11/09 20:21:43 mlhuang Exp $
+// $Id$
 //
 
 // Get admin API handle
