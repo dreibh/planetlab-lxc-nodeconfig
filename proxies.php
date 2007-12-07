@@ -9,7 +9,7 @@
 # Mark Huang <mlhuang@cs.princeton.edu>
 # Copyright (C) 2004 The Trustees of Princeton University
 #
-# $Id: proxies.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
+# $Id$
 #
 
 <?php

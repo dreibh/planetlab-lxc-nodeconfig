@@ -5,7 +5,7 @@
 // Marc Fiuczynski <mef@cs.princeton.edu>
 // Copyright (C) 2006 The Trustees of Princeton University
 // 
-// $Id: step-tickers.php,v 1.1 2006/11/06 22:02:17 mlhuang Exp $
+// $Id$
 //
 
 // Get admin API handle

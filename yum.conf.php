@@ -5,7 +5,7 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2004-2006 The Trustees of Princeton University
 //
-// $Id: yum.conf.php,v 1.5 2007/03/22 17:57:23 faiyaza Exp $
+// $Id$
 //
 
 // For PLC_NAME and PLC_BOOT_HOST

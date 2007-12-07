@@ -27,55 +27,55 @@
 ######################################################################
 ######################################################################
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
+#####  $Id$  #####
 #####  setup for Red Hat Linux  #####
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
 
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
-
-
-
-
+#####  $Id$  #####
 
 
 
 
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
-
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
-
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
-
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
-
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
-
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
-
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
 
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
 
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
+
+#####  $Id$  #####
 
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
+
+
+#####  $Id$  #####
+
+#####  $Id$  #####
+
+#####  $Id$  #####
+
+#####  $Id$  #####
+
+#####  $Id$  #####
+
+#####  $Id$  #####
+
+
+#####  $Id$  #####
 
 # level 10 config file format
 V10/Berkeley
@@ -1665,7 +1665,7 @@ R$* $| <$*> <>	$# $2
 ###   SMTP Mailer specification   ###
 #####################################
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
 #
 #  common sender and masquerading recipient rewriting
@@ -1758,7 +1758,7 @@ Mrelay,		P=[IPC], F=mDFMuXa8, S=EnvFromSMTP/HdrFromSMTP, R=MasqSMTP, E=\r\n, L=2
 ###   PROCMAIL Mailer specification   ###
 ##################*****##################
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
 Mprocmail,	P=/usr/bin/procmail, F=DFMSPhnu9, S=EnvFromSMTP/HdrFromSMTP, R=EnvToSMTP/HdrFromSMTP,
 		T=DNS/RFC822/X-Unix,
@@ -1769,7 +1769,7 @@ Mprocmail,	P=/usr/bin/procmail, F=DFMSPhnu9, S=EnvFromSMTP/HdrFromSMTP, R=EnvToS
 ###   Local and Program Mailer specification   ###
 ##################################################
 
-#####  $Id: alpha-sendmail.cf,v 1.3 2005/06/03 13:59:40 alk Exp $  #####
+#####  $Id$  #####
 
 #
 #  Envelope sender rewriting
