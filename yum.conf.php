@@ -61,11 +61,6 @@ if (isset($_REQUEST['mirrorlist']) &&
       echo "$mirror/core/updates/$releasever/\$ARCH/\n";
     }
     break;
-  case "extras":
-    foreach ($mirrors as $mirror) {
-      echo "$mirror/extras/$releasever/\$ARCH/\n";
-    }
-    break;
   }
 
   // Always list ourselves last
@@ -97,14 +92,6 @@ mirrorlist=https://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=upd
 gpgcheck=$gpgcheck
 # PlanetLab builds its own versions of these tools
 exclude=iptables kernel kernel kernel-devel kernel-smp kernel-smp-devel kernel-xen0 kernel-xen0-devel kernel-xenU kernel-xenU-devel mysql ulogd
-
-[extras]
-name=Fedora Extras \$releasever - \$basearch
-mirrorlist=https://$PLC_BOOT_HOST/PlanetLabConf/yum.conf.php?mirrorlist&repo=extras&releasever=\$releasever
-gpgcheck=$gpgcheck
-# PlanetLab builds its own versions of these tools
-exclude=iptables kernel kernel kernel-devel kernel-smp kernel-smp-devel kernel-xen0 kernel-xen0-devel kernel-xenU kernel-xenU-devel mysql ulogd
-
 
 EOF;
 
