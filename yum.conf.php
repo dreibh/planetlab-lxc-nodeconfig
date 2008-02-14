@@ -47,19 +47,35 @@ if (isset($_REQUEST['mirrorlist']) &&
   $mirrors = array("http://coblitz.planet-lab.org/pub/fedora/linux",
 		   "http://fedora.gtlib.cc.gatech.edu/pub/fedora.redhat/linux",
 		   "http://download.fedoraproject.org/pub/fedora/linux",
-		   "ftp://rpmfind.net/linux/fedora",
 		   "http://mirrors.kernel.org/fedora");
+		   #"ftp://rpmfind.net/linux/fedora",  still uses the old style of directory hierarchy
   $releasever = $_REQUEST['releasever'];
   switch ($_REQUEST['repo']) {
   case "base":
-    foreach ($mirrors as $mirror) {
-      echo "$mirror/core/$releasever/\$ARCH/os/\n";
-    }
+  	if ( intval($releasever) >= 7 )
+	{
+		foreach ($mirrors as $mirror) {
+		  echo "$mirror/releases/$releasever/Everything/\$ARCH/os/\n";
+		}
+
+	} else {
+		foreach ($mirrors as $mirror) {
+		  echo "$mirror/core/$releasever/\$ARCH/os/\n";
+		}
+	}
     break;
   case "updates":
-    foreach ($mirrors as $mirror) {
-      echo "$mirror/core/updates/$releasever/\$ARCH/\n";
-    }
+  	if ( intval($releasever) >= 7 )
+	{
+		foreach ($mirrors as $mirror) {
+		  echo "$mirror/updates/$releasever/\$ARCH/\n";
+		}
+
+	} else {
+		foreach ($mirrors as $mirror) {
+		  echo "$mirror/core/updates/$releasever/\$ARCH/\n";
+		}
+	}
     break;
   }
 
