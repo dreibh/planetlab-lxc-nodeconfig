@@ -28,6 +28,7 @@ COMMIT
 -A OUTPUT -j BLACKLIST
 -A LOGDROP -j LOG
 -A LOGDROP -j DROP
+-A OUTPUT -o eth0 -j ULOG --ulog-cprange 54 --ulog-qthreshold 16
 COMMIT
 
 
