@@ -44,7 +44,7 @@ if (isset($_REQUEST['gpgcheck'])) {
 if (isset($_REQUEST['mirrorlist']) &&
     isset($_REQUEST['repo']) &&
     isset($_REQUEST['releasever'])) {
-  $mirrors = array("http://coblitz.planet-lab.org/pub/fedora/linux",
+  $mirrors = array("http://coblitz.codeen.org/coblitz.planet-lab.org/pub/fedora/linux",
 		   "http://fedora.gtlib.cc.gatech.edu/pub/fedora.redhat/linux",
 		   "http://download.fedoraproject.org/pub/fedora/linux",
 		   "http://mirrors.kernel.org/fedora");
