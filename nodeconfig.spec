@@ -63,3 +63,4 @@ rm -rf $RPM_BUILD_ROOT
 /var/www/html/PlanetLabConf
 /var/www/html/PLCAPI
 
+%changelog
