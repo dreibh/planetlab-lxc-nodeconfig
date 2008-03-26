@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 4.2
-%define taglevel 1
+%define taglevel 2
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -64,3 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 /var/www/html/PLCAPI
 
 %changelog
+* Wed Mar 26 2008 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.2-1 nodeconfig-4.2-2
+- integrated /var/www/html/{boot,PLCAPI} from PLCWWW
+- former content has moved down into PlanetLabConf
+
