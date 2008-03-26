@@ -48,14 +48,18 @@ rm -rf $RPM_BUILD_ROOT
 
 echo "* nodeconfig: Installing PlanetLabConf pages"
 
-mkdir -p $RPM_BUILD_ROOT/var/www/html/PlanetLabConf
+for dir in boot PlanetLabConf PLCAPI ; do
+    mkdir -p $RPM_BUILD_ROOT/var/www/html/$dir
+done
 # let's be conservative and exclude codebase files, though there should not be any
-rsync -a --exclude \*.spec --exclude .svn --exclude CVS ./ $RPM_BUILD_ROOT/var/www/html/PlanetLabConf
+rsync -a --exclude \*.spec --exclude .svn --exclude CVS ./ $RPM_BUILD_ROOT/var/www/html/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
+/var/www/html/boot
 /var/www/html/PlanetLabConf
+/var/www/html/PLCAPI
 
