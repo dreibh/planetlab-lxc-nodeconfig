@@ -33,7 +33,7 @@ if (isset($_REQUEST['perl'])) {
 echo $shebang . "\n";
 
 foreach (array('PLC_API_HOST', 'PLC_API_PATH', 'PLC_API_PORT',
-	       'PLC_WWW_HOST', 'PLC_BOOT_HOST',
+	       'PLC_WWW_HOST', 'PLC_BOOT_HOST', 'PLC_PLANETFLOW_HOST',
 	       'PLC_NAME', 'PLC_SLICE_PREFIX',
 	       'PLC_MAIL_SUPPORT_ADDRESS',
 	       'PLC_MAIL_MOM_LIST_ADDRESS',
