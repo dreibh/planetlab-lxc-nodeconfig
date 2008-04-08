@@ -33,6 +33,12 @@ if (!empty($_REQUEST['role'])) {
     }
   }
 }
+if (isset($_REQUEST[PLC_SLICE_PREFIX . '_monitor'])) {
+  $user = $adm->GetPersons(array('first_name' => 'Site', 'last_name' => 'Assistant'));
+  if (!empty($user)) {
+    $persons[] = $user[0];
+  }
+}
 
 if (isset($_REQUEST['site_admin'])) {
   // Look up the node
