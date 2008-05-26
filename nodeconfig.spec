@@ -26,7 +26,7 @@ URL: %(echo %{url} | cut -d ' ' -f 2)
 
 # We use set everywhere
 Requires: php >= 5.0
-Requires: PLCAPI >= 4.0
+Requires: PLCAPI >= 5.0
 
 %description
 
@@ -50,9 +50,8 @@ echo "* nodeconfig: Installing PlanetLabConf pages"
 
 for dir in boot PlanetLabConf PLCAPI ; do
     mkdir -p $RPM_BUILD_ROOT/var/www/html/$dir
+    rsync -a --exclude .svn ./$dir/ $RPM_BUILD_ROOT/var/www/html/$dir/
 done
-# let's be conservative and exclude codebase files, though there should not be any
-rsync -a --exclude \*.spec --exclude .svn --exclude CVS ./ $RPM_BUILD_ROOT/var/www/html/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
