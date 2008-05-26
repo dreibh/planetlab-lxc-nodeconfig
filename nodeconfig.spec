@@ -4,8 +4,8 @@
 %define url $URL: svn+ssh://thierry@svn.planet-lab.org/svn/WWW/trunk/PLCWWW.spec $
 
 %define name nodeconfig
-%define version 4.2
-%define taglevel 4
+%define version 5.0
+%define taglevel 0
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -75,3 +75,5 @@ rm -rf $RPM_BUILD_ROOT
 - integrated /var/www/html/{boot,PLCAPI} from PLCWWW
 - former content has moved down into PlanetLabConf
 
+
+%define module_current_branch 4.2
