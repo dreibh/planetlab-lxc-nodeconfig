@@ -16,9 +16,9 @@ global $adm;
 $bootmanager = "bootmanager.sh.sgn";
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-if (!empty($nodenetworks)) {
-  $nodes = $adm->GetNodes(array($nodenetworks[0]['node_id']));
+$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+if (!empty($interfaces)) {
+  $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
   if (!empty($nodes)) {
     $node = $nodes[0];
   }
@@ -62,7 +62,7 @@ if (isset($node)) {
   if (!empty($node['nodegroup_ids'])) {
     $nodegroups = $adm->GetNodeGroups($node['nodegroup_ids']);
     foreach ($nodegroups as $nodegroup) {
-      $bootmanagers[] = strtolower($nodegroup['name']) . "_" . $bootmanager;
+      $bootmanagers[] = strtolower($nodegroup['groupname']) . "_" . $bootmanager;
     }
   }
 }

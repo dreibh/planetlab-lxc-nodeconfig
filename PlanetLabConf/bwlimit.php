@@ -13,10 +13,10 @@ require_once 'plc_api.php';
 global $adm;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-if (!empty($nodenetworks)) {
-  if ($nodenetworks[0]['bwlimit'] !== NULL) {
-    $rate = $nodenetworks[0]['bwlimit'];
+$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+if (!empty($interfaces)) {
+  if ($interfaces[0]['bwlimit'] !== NULL) {
+    $rate = $interfaces[0]['bwlimit'];
     if ($rate >= 1000000000 && ($rate % 1000000000) == 0) {
       printf("%.0fgbit", ($rate / 1000000000.));
     } elseif ($rate >= 1000000 && ($rate % 1000000) == 0) {

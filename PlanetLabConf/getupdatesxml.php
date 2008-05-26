@@ -80,9 +80,9 @@ function xmlspecialchars($string, $parsed = ENT_UNPARSED)
 if (!empty($_REQUEST['node_id'])) {
   $node = $adm->GetSlivers(intval($_REQUEST['node_id']));
 } else {
-  $nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-  if (!empty($nodenetworks)) {
-    $node = $adm->GetSlivers($nodenetworks[0]['node_id']);
+  $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+  if (!empty($interfaces)) {
+    $node = $adm->GetSlivers($interfaces[0]['node_id']);
   }
 }
 

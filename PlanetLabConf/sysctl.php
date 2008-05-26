@@ -15,16 +15,16 @@ global $adm;
 $ip_forward = 0;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-if (!empty($nodenetworks)) {
-  $nodes = $adm->GetNodes(array($nodenetworks[0]['node_id']));
+$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+if (!empty($interfaces)) {
+  $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
   if (!empty($nodes)) {
     $node = $nodes[0];
-    $nodenetworks = $adm->GetNodeNetworks($node['nodenetwork_ids']);
-    foreach ($nodenetworks as $nodenetwork) {
+    $interfaces = $adm->GetInterfaces($node['interface_ids']);
+    foreach ($interfaces as $interface) {
       // Nodes with proxy socket interfaces need to be able to forward
       // between the fake proxy0 interface and the real interface.
-      if ($nodenetwork['method'] == 'proxy') {
+      if ($interface['method'] == 'proxy') {
 	$ip_forward = 1;
 	break;
       }

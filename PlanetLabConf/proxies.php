@@ -3,7 +3,7 @@
 #
 # post: service vnet restart
 #
-# Proxy (a.k.a. network telescope a.k.a. honeypot) nodenetwork configuration
+# Proxy (a.k.a. network telescope a.k.a. honeypot) interface configuration
 #
 # Aaron Klingaman <alk@cs.princeton.edu>
 # Mark Huang <mlhuang@cs.princeton.edu>
@@ -18,9 +18,9 @@ require_once 'plc_api.php';
 global $adm;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-if (!empty($nodenetworks)) {
-  $nodes = $adm->GetNodes(array($nodenetworks[0]['node_id']));
+$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+if (!empty($interfaces)) {
+  $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
   if (!empty($nodes)) {
     $node = $nodes[0];
   }
@@ -30,18 +30,18 @@ if (!isset($node)) {
   exit();
 }
 
-$nodenetworks = $adm->GetNodeNetworks($node['nodenetwork_ids']);
+$interfaces = $adm->GetInterfaces($node['interface_ids']);
 
-foreach ($nodenetworks as $nodenetwork) {
-  // XXX PL2896: need nodenetworks.device
-  switch ($nodenetwork['method']) {
+foreach ($interfaces as $interface) {
+  // XXX PL2896: need interfaces.device
+  switch ($interface['method']) {
   case 'tap':
     $dev = "tap0";
-    $types['taps'][$dev][0] = $nodenetwork['ip'] . "/" . $nodenetwork['gateway'];
+    $types['taps'][$dev][0] = $interface['ip'] . "/" . $interface['gateway'];
     break;
   case 'proxy':
     $dev = "proxy0";
-    $types['proxies'][$dev][] = $nodenetwork['ip'];
+    $types['proxies'][$dev][] = $interface['ip'];
     break;
   }
 }

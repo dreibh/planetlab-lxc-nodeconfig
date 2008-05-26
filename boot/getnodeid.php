@@ -15,13 +15,13 @@ global $adm;
 if (!empty($_REQUEST['mac_addr'])) {
   $mac_lower = strtolower(trim($_REQUEST['mac_addr']));
   $mac_upper = strtoupper(trim($_REQUEST['mac_addr']));
-  $nodenetworks = $adm->GetNodeNetworks(array('mac' => array($mac_lower, $mac_upper)));
+  $interfaces = $adm->GetInterfaces(array('mac' => array($mac_lower, $mac_upper)));
 } else {
-  $nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
+  $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
 }
 
-if (!empty($nodenetworks)) {
-  print $nodenetworks[0]['node_id'];
+if (!empty($interfaces)) {
+  print $interfaces[0]['node_id'];
 } else {
   print "-1";
 }

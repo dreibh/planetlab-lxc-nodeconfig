@@ -22,9 +22,9 @@ require_once 'plc_api.php';
 global $adm;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-if (!empty($nodenetworks)) {
-  $nodes = $adm->GetNodes(array($nodenetworks[0]['node_id']));
+$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+if (!empty($interfaces)) {
+  $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
   if (!empty($nodes)) {
     $node = $nodes[0];
   }

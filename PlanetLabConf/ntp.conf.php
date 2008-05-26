@@ -18,9 +18,9 @@ $default_name = "default";
 $file_name = $config_directory . $file_prefix . $default_name;
 
 // Look up the node
-$nodenetworks = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-if (!empty($nodenetworks)) {
-  $nodes = $adm->GetNodes(array($nodenetworks[0]['node_id']));
+$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+if (!empty($interfaces)) {
+  $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
   if (!empty($nodes)) {
     $node = $nodes[0];
   }
