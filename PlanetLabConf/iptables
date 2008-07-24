@@ -17,6 +17,7 @@
 :POSTROUTING ACCEPT [0:0]
 -A POSTROUTING -j MARK --copy-xid 0x0
 -A INPUT -i ! lo -j MARK --copy-xid 0x0
+-A POSTROUTING -m set --set Internet2 dst -j CLASSIFY --set-class 0001:2000
 COMMIT
 
 *filter
