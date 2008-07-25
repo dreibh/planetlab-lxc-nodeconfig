@@ -30,9 +30,9 @@ COMMIT
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
 :POSTROUTING ACCEPT [0:0]
--A INPUT -i ! lo -j MARK --copy-xid 0x0
+-A INPUT -j MARK --copy-xid 0x0
 -A POSTROUTING -j MARK --copy-xid 0x0
--A POSTROUTING -j CLASSIFY --set-class 0001:1000
--A POSTROUTING -m set --set Internet2 dst -j CLASSIFY --set-class 0001:2000
+-A POSTROUTING -j CLASSIFY --set-class 0001:1000 --add-mark
+-A POSTROUTING -m set --set Internet2 dst -j CLASSIFY --set-class 0001:2000 --add-mark
 COMMIT
 # Completed on Fri Jul 25 15:09:03 2008
