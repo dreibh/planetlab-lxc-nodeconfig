@@ -2,6 +2,3 @@ server 132.227.74.33
 server ntp.univ-lyon1.fr
 server ntp1.tuxfamily.net
 server ntp2.tuxfamily.net
-server ntp1.theinternetone.net
-server ntp2.theinternetone.net
-server ntp3.theinternetone.net
