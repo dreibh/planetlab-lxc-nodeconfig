@@ -3,4 +3,3 @@ server time.apple.com
 server pool.ntp.org
 server ntp.saard.net
 server ucsd.ron.lcs.mit.edu
-server ntp1.linux.medialabs.com
