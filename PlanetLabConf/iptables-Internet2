@@ -10,7 +10,6 @@
 :BLACKLIST - 
 :LOGDROP - 
 -A OUTPUT -j BLACKLIST
--A OUTPUT -o eth0 -j ULOG --ulog-cprange 54 --ulog-qthreshold 16
 -A LOGDROP -j LOG
 -A LOGDROP -j DROP
 COMMIT
@@ -25,5 +24,5 @@ COMMIT
 -A POSTROUTING -j MARK --copy-xid 0x0
 -A POSTROUTING -j CLASSIFY --set-class 0001:1000 --add-mark
 -A POSTROUTING -m set --set Internet2 dst -j CLASSIFY --set-class 0001:2000 --add-mark
+-A POSTROUTING -o eth0 -j ULOG --ulog-cprange 54 --ulog-qthreshold 16
 COMMIT
-
