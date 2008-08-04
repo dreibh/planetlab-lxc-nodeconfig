@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 5.0
-%define taglevel 0
+%define taglevel 1
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -63,6 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 /var/www/html/PLCAPI
 
 %changelog
+* Mon Aug 04 2008 Sapan Bhatia <sapanb@cs.princeton.edu> - nodeconfig-5.0-1
+- codemux/planetflow change
+
 * Tue Apr 22 2008 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.2-4
 - keys.php know about monitor
 - new sudoers.php script
