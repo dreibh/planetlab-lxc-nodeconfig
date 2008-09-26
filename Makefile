@@ -6,6 +6,8 @@
 tags:
 	find . -type f | grep -v '/\.svn/' | egrep -v '/(uudecode.gz|tags|TAGS)$$' | xargs etags
 
+.PHONY: tags
+
 ########## make sync PLCHOST=hostname VSERVER=vservername
 ifdef PLCHOST
 ifdef VSERVER

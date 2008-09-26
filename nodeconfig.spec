@@ -40,14 +40,14 @@ reasons these scripts get installed in /var/www/html/PlanetLabConf.
 %setup -q
 
 %build
-pushd yum
+pushd nodeconfig/yum
 
-EXCLUDE="exclude=kernel* util-vserver* iptables iproute"
+KEXCLUDE="exclude=$(../../build/getkexcludes.sh)"
 
-# expand list of excludes
+# expand list of kexcludes
 for filein in $(find . -name '*.in') ; do
     file=$(echo $filein | sed -e "s,\.in$,,")
-    sed -e "s,@EXCLUDE@,$EXCLUDE,g" $filein > $file
+    sed -e "s,@KEXCLUDE@,$KEXCLUDE,g" $filein > $file
 done
 
 # scan fcdistros and catenate all repos in 'stock.repo' so db-config can be distro-independant
@@ -65,6 +65,8 @@ popd
 %install
 rm -rf $RPM_BUILD_ROOT
 
+pushd nodeconfig
+
 echo "* nodeconfig: Installing PlanetLabConf pages"
 
 for dir in boot PlanetLabConf PLCAPI ; do
@@ -73,12 +75,14 @@ for dir in boot PlanetLabConf PLCAPI ; do
 done
 
 # the yum area -- se db-config
-# expose (fixed) myplc.repo.php as				           https://<plc>/yum/myplc.repo.php
-install -D -m 644 ./yum/myplc.repo.php			    $RPM_BUILD_ROOT/var/www/html/yum/myplc.repo.php
-# expose the fcdistro-dependant yum.conf as				   https://<plc>/yum/yum.conf
-install -D -m 644 ./yum/%{distroname}/yum.conf		    $RPM_BUILD_ROOT/var/www/html/yum/yum.conf
-# expose the (fcdistro-dependant) stock.repo as				   https://<plc>/yum/stock.repo
-install -D -m 644 ./yum/%{distroname}/yum.myplc.d/stock.repo  $RPM_BUILD_ROOT/var/www/html/yum/stock.repo
+# expose (fixed) myplc.repo.php as				            https://<plc>/yum/myplc.repo.php
+install -D -m 644 ./yum/myplc.repo.php			     $RPM_BUILD_ROOT/var/www/html/yum/myplc.repo.php
+# expose the fcdistro-dependant yum.conf as				    https://<plc>/yum/yum.conf
+install -D -m 644 ./yum/%{distroname}/yum.conf		     $RPM_BUILD_ROOT/var/www/html/yum/yum.conf
+# expose the (fcdistro-dependant) stock.repo as				    https://<plc>/yum/stock.repo
+install -D -m 644 ./yum/%{distroname}/yum.myplc.d/stock.repo $RPM_BUILD_ROOT/var/www/html/yum/stock.repo
+
+popd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
