@@ -55,7 +55,7 @@ done
 for fcdistro in $(ls); do
     [ -d $fcdistro ] || continue
     pushd $fcdistro/yum.myplc.d
-    rm f stock.repo
+    rm -f stock.repo
     cat *.repo > stock.repo
     popd
 done
