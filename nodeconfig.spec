@@ -76,9 +76,9 @@ done
 # expose (fixed) myplc.repo.php as				           https://<plc>/yum/myplc.repo.php
 install -D -m 644 ./yum/myplc.repo.php			    $RPM_BUILD_ROOT/var/www/html/yum/myplc.repo.php
 # expose the fcdistro-dependant yum.conf as				   https://<plc>/yum/yum.conf
-install -D -m 644 ./yum/%{fcdistro}/yum.conf		    $RPM_BUILD_ROOT/var/www/html/yum/yum.conf
+install -D -m 644 ./yum/%{distroname}/yum.conf		    $RPM_BUILD_ROOT/var/www/html/yum/yum.conf
 # expose the (fcdistro-dependant) stock.repo as				   https://<plc>/yum/stock.repo
-install -D -m 644 ./yum/%{fcdistro}/yum.myplc.d/stock.repo  $RPM_BUILD_ROOT/var/www/html/yum/stock.repo
+install -D -m 644 ./yum/%{distroname}/yum.myplc.d/stock.repo  $RPM_BUILD_ROOT/var/www/html/yum/stock.repo
 
 %clean
 rm -rf $RPM_BUILD_ROOT
