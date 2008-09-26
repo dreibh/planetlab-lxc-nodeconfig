@@ -1,5 +1,5 @@
 #
-# $Id: PLCWWW.spec 7881 2008-01-22 14:45:22Z thierry $
+# $Id$
 #
 %define url $URL: svn+ssh://thierry@svn.planet-lab.org/svn/WWW/trunk/PLCWWW.spec $
 
@@ -40,8 +40,11 @@ reasons these scripts get installed in /var/www/html/PlanetLabConf.
 %setup -q
 
 %build
-echo "There is no build stage for this component."
-echo "All files just need to be installed as is from the codebase."
+EXCLUDE="exclude=kernel* util-vserver* iptables iproute"
+for filein in $(find . -name '*.in') ; do
+    file=$(echo $filein | sed -e "s,\.in$,,")
+    sed -e "s,@EXCLUDE@,$EXCLUDE,g" $filein > $file
+done
 
 %install
 rm -rf $RPM_BUILD_ROOT
