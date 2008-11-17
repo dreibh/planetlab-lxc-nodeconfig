@@ -27,6 +27,8 @@ URL: %(echo %{url} | cut -d ' ' -f 2)
 # We use set everywhere
 Requires: php >= 5.0
 Requires: PLCAPI >= 5.0
+# need the apache user at install-time
+Requires: httpd 
 
 %description
 
@@ -81,6 +83,11 @@ install -D -m 644 ./yum/myplc.repo.php			     $RPM_BUILD_ROOT/var/www/html/yum/m
 install -D -m 644 ./yum/%{distroname}/yum.conf		     $RPM_BUILD_ROOT/var/www/html/yum/yum.conf
 # expose the (fcdistro-dependant) stock.repo as				    https://<plc>/yum/stock.repo
 install -D -m 644 ./yum/%{distroname}/yum.myplc.d/stock.repo $RPM_BUILD_ROOT/var/www/html/yum/stock.repo
+
+# the boot manager upload area
+mkdir -p /var/log/bm
+chown apache:apache /var/log/bm
+chmod 700 /var/log/bm
 
 popd
 
