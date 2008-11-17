@@ -1,11 +1,15 @@
 <?php
 
-  // Thierry Parmentelat -- INRIA
-  // first draft for a revival of former (3.x?) alpina-logs in 5.0
+// Thierry Parmentelat -- INRIA
+// first draft for a revival of former (3.x?) alpina-logs in 5.0
 
-  // this needs be created with proper permissions at package install time
+// this needs be created with proper permissions at package install time
 $logdir="/var/log/bm";
-$limit_bytes=16*1024;
+
+// limit: applies to uploads coming from an unrecognized IP
+$limit_bytes=4*1024;
+
+$default_hostname="unknown";
 
 function mkdir_if_needed ($dirname) {
   if (is_dir ($dirname))
@@ -21,7 +25,7 @@ global $adm;
 // with an ip the same as the http requestor ip
 $ip = $_SERVER['REMOTE_ADDR'];
 
-$hostname="unknown";
+$hostname=$default_hostname;
 // locate hostname from DB based on this IP
 $interfaces=$adm->GetInterfaces(array("ip"=>$ip));
 if (! empty($interfaces) ) {
@@ -54,8 +58,8 @@ fprintf ($log, "BootManager log created on: %s-%s\n",$month,$time);
 fprintf( $log, "From IP: %s\n",$ip);
 fprintf( $log, "hostname: %s\n",$hostname);
 fprintf ( $log, "uploaded file: %s (%d bytes)\n",$uploaded_name,$uploaded_size);
-if ( $uploaded_size >= $limit_bytes) {
-  fprintf ( $log, "contents truncated to %d bytes\n",$limit_bytes);
+if ( ( strcmp($hostname,$default_hostname)==0) && ( $uploaded_size >= $limit_bytes) ) {
+  fprintf ( $log, "contents from an unrecognized IP address was truncated to %d bytes\n",$limit_bytes);
   $truncated=TRUE;
   $uploaded_size=$limit_bytes;
  }
