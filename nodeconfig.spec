@@ -84,15 +84,16 @@ install -D -m 644 ./yum/%{distroname}/yum.conf		     $RPM_BUILD_ROOT/var/www/htm
 # expose the (fcdistro-dependant) stock.repo as				    https://<plc>/yum/stock.repo
 install -D -m 644 ./yum/%{distroname}/yum.myplc.d/stock.repo $RPM_BUILD_ROOT/var/www/html/yum/stock.repo
 
-# the boot manager upload area
-mkdir -p /var/log/bm
-chown apache:apache /var/log/bm
-chmod 700 /var/log/bm
-
 popd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+# the boot manager upload area
+mkdir -p /var/log/bm
+chown apache:apache /var/log/bm
+chmod 700 /var/log/bm
 
 %files
 %defattr(-,root,root,-)
