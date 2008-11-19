@@ -41,7 +41,8 @@ if (! empty($interfaces) ) {
 
 $rawdir=$logdir . "/raw";
 $date=strftime("%Y-%m-%d-%H-%M");
-$log_name=$rawdir . "/" . $date . "-" . $hostname . "-" . $ip . ".txt";
+$log_name=$date . "-" . $hostname . "-" . $ip . ".txt";
+$log_path=$rawdir . "/" . $log_name;
 $month=strftime("%Y-%m");
 $time=strftime("%d-%H-%M");
 
@@ -49,7 +50,7 @@ mkdir_if_needed ($rawdir);
 
 ////////////////////////////////////////
 
-$log=fopen($log_name,"w") or die ("Cannot open logfile "+$log_name);
+$log=fopen($log_path,"w") or die ("Cannot open logfile "+$log_path);
 
 $uploaded_name= $_FILES['log']['tmp_name'];
 $uploaded_size=filesize($uploaded_name);
@@ -86,7 +87,7 @@ mkdir_if_needed ($linkdir);
 $linkdir = $linkdir . "/" . $hostname;
 mkdir_if_needed ($linkdir);
 $link = $linkdir . "/" . $time ;
-symlink ($log_name,$link);
+symlink ("../../../raw/".$log_name,$link);
 
 # /var/log/bm/per-hostname/onelab1.inria.fr/2008-11-31-20-02.bmlog
 $linkdir=$logdir;
@@ -95,7 +96,7 @@ mkdir_if_needed ($linkdir);
 $linkdir=$linkdir . "/" . $hostname;
 mkdir_if_needed ($linkdir);
 $link = $linkdir . "/" . $month . "-" . $time ;
-symlink ($log_name,$link);
+symlink ("../../raw/".$log_name,$link);
 
 # /var/log/bm/per-ip/138.96.250.141/2008-11-31-20-02.bmlog
 $linkdir=$logdir;
@@ -104,6 +105,6 @@ mkdir_if_needed ($linkdir);
 $linkdir=$linkdir . "/" . $ip;
 mkdir_if_needed ($linkdir);
 $link = $linkdir . "/" . $month . "-" . $time ;
-symlink ($log_name,$link);
+symlink ("../../raw/".$log_name,$link);
 
 ?>
