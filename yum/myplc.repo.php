@@ -50,7 +50,7 @@ if ( ! isset($_REQUEST['node_id'])) {
   $nodegroup_ids = $nodes[0]['nodegroup_ids'];
   $nodegroups = $adm->GetNodeGroups($nodegroup_ids);
   foreach ($nodegroups as $nodegroup) {
-    $nodegroup_name = $nodegroup['name'];
+    $nodegroup_name = $nodegroup['groupname'];
     $nodegroup_names [] = $nodegroup_name;
     echo "# in nodegroup $nodegroup_name \n" ;
   }
