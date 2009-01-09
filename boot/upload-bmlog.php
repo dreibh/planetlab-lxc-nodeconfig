@@ -71,7 +71,7 @@ $contents = fread($uploaded, $uploaded_size);
 fclose($uploaded);
 fwrite($log,$contents);
 if ($truncated)
-  fwrite ($log, " ..<truncated>..\n");
+  fwrite ($log, " ..<" . "truncated" . ">..\n");
 fclose($log);
 
 ////////////////////////////////////////
