@@ -13,7 +13,18 @@ require_once 'plc_api.php';
 global $adm;
 
 // Look up the node
-$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+// backwards compatibility with the old 4.2 API
+global $__PLC_API_VERSION;
+if ( ! method_exists ($adm,"GetInterfaces"))
+  $__PLC_API_VERSION = 4.2;
+else
+  $__PLC_API_VERSION = 4.3;
+
+if ($__PLC_API_VERSION==4.2)
+  $interfaces = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
+else
+  $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+
 if (!empty($interfaces)) {
   if ($interfaces[0]['bwlimit'] !== NULL) {
     $rate = $interfaces[0]['bwlimit'];

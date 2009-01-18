@@ -23,6 +23,13 @@ global $adm;
 $persons = array();
 $keys = array();
 
+// backwards compatibility with the old 4.2 API
+global $__PLC_API_VERSION;
+if ( ! method_exists ($adm,"GetInterfaces"))
+  $__PLC_API_VERSION = 4.2;
+else
+  $__PLC_API_VERSION = 4.3;
+
 if (!empty($_REQUEST['role'])) {
   // XXX Implement API query filters
   // $persons = $adm->GetPersons(array('roles' => array($_REQUEST['role'])));
@@ -42,7 +49,10 @@ if (isset($_REQUEST[PLC_SLICE_PREFIX . '_monitor'])) {
 
 if (isset($_REQUEST['site_admin'])) {
   // Look up the node
-  $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+  if ($__PLC_API_VERSION==4.2)
+    $interfaces = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
+  else
+    $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
   if (!empty($interfaces)) {
     $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
     if (!empty($nodes)) {
@@ -55,35 +65,28 @@ if (isset($_REQUEST['site_admin'])) {
     // Can't filter on roles so have to bruit force through entire userlist of site.
     if ($sites && $sites[0]['person_ids']) {
       $all_persons = $adm->GetPersons($sites[0]['person_ids']);
-      foreach ($all_persons as $person) {
-	    if ((in_array('pi', $person['roles']) || in_array('tech', $person['roles'])) && 
-        $person['enabled']) {
-          $persons[] = $person; 
-        }
-	  }
+      if (!empty($all_persons))
+	foreach ($all_persons as $person)
+	  if ((in_array('pi', $person['roles']) || in_array('tech', $person['roles'])) && $person['enabled']) 
+	    $persons[] = $person; 
     }
   }
 }
 
-if (isset($_REQUEST['root'])) {
+if (isset($_REQUEST['root']))
   $keys[] = array('key' => file_get_contents(PLC_ROOT_SSH_KEY_PUB));
-}
 
 
 if (!empty($persons)) {
   $key_ids = array();
-  foreach ($persons as $person) {
-  	if ($person['key_ids']) {
+  foreach ($persons as $person)
+    if ($person['key_ids'])
       $key_ids[] = $person['key_ids'][0];
-	}
-  }
-  if (!empty($key_ids)) {
+  if (!empty($key_ids))
     $keys = $adm->GetKeys($key_ids);
-  }
 }
 
-foreach ($keys as $key) {
+foreach ($keys as $key)
   print $key['key']. "\n";
-}
 
 ?>

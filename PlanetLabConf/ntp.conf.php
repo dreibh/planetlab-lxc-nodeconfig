@@ -18,7 +18,13 @@ $default_name = "default";
 $file_name = $config_directory . $file_prefix . $default_name;
 
 // Look up the node
-$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+
+// backwards compatibility with the old 4.2 API
+if ( ! method_exists ($adm,"GetInterfaces"))
+  $interfaces = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
+else
+  $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+
 if (!empty($interfaces)) {
   $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
   if (!empty($nodes)) {
@@ -42,6 +48,10 @@ if (!empty($sites)) {
   $site_name= $sites[0]['name'];
   $mylat= $sites[0]['latitude'];
   $mylong= $sites[0]['longitude'];
+} else {
+  $site_name= "Unknown";
+  $mylat= 0;
+  $mylong= 0;
 }
 
 /* typical NTP settings */
