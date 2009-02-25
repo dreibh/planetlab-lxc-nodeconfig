@@ -63,6 +63,8 @@ if ( ( strcmp($hostname,$default_hostname)==0) && ( $uploaded_size >= $limit_byt
   fprintf ( $log, "contents from an unrecognized IP address was truncated to %d bytes\n",$limit_bytes);
   $truncated=TRUE;
   $uploaded_size=$limit_bytes;
+ } else {
+  $truncated=FALSE;
  }
 
 fprintf( $log, "-----------------\n\n" );
