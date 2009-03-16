@@ -26,7 +26,7 @@ URL: %(echo %{url} | cut -d ' ' -f 2)
 
 # We use set everywhere
 Requires: php >= 5.0
-Requires: PLCAPI >= 5.0
+Requires: PLCAPI >= 4.3
 # need the apache user at install-time
 Requires: httpd 
 
@@ -103,7 +103,7 @@ chmod 700 /var/log/bm
 /var/www/html/yum
 
 %changelog
-* Wed Sep 10 2008 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-1
+* Wed Sep 10 2008 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.3-1
 - reflects new names from the data model
 
 * Tue Apr 22 2008 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.2-4
