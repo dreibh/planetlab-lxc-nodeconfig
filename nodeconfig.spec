@@ -4,7 +4,7 @@
 %define url $URL: svn+ssh://thierry@svn.planet-lab.org/svn/WWW/trunk/PLCWWW.spec $
 
 %define name nodeconfig
-%define version 5.0
+%define version 4.3
 %define taglevel 1
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
