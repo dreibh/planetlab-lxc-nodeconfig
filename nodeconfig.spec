@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 4.3
-%define taglevel 1
+%define taglevel 2
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -103,6 +103,13 @@ chmod 700 /var/log/bm
 /var/www/html/yum
 
 %changelog
+* Tue Mar 24 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.3-2
+- renumbered 4.3
+- new script upload-bmlog.php
+- attempts to ship decent yum configs for stock repos to nodes
+- cleanup old stuff
+- attempts to be 4.2 compatible
+
 * Wed Sep 10 2008 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.3-1
 - reflects new names from the data model
 
