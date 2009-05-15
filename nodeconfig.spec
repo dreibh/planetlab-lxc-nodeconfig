@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 4.3
-%define taglevel 2
+%define taglevel 3
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -103,6 +103,9 @@ chmod 700 /var/log/bm
 /var/www/html/yum
 
 %changelog
+* Fri May 15 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.3-3
+- changes to sysctl.conf for co* relating to tcp window scaling
+
 * Tue Mar 24 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.3-2
 - renumbered 4.3
 - new script upload-bmlog.php
