@@ -47,17 +47,10 @@ if (isset($_REQUEST[PLC_SLICE_PREFIX . '_monitor'])) {
   }
 }
 
-if (isset($_REQUEST['site_admin'])) {
-  // Look up the node
-  if ($__PLC_API_VERSION==4.2)
-    $interfaces = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-  else
-    $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
-  if (!empty($interfaces)) {
-    $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
-    if (!empty($nodes)) {
-      $node = $nodes[0];
-    }
+if (isset($_REQUEST['site_admin']) && isset($_REQUEST['node_id'])) {
+  $nodes = $adm->GetNodes(array(intval($_REQUEST['node_id'])));
+  if (!empty($nodes)) {
+    $node = $nodes[0];
   }
   if (isset($node)) {
     // Look up the site
