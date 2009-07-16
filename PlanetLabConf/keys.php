@@ -1,8 +1,8 @@
 <?php
 //
-// Deprecated. Node Manager should manage keys.
-//
 // .ssh/authorized_keys generator
+// Node Manager should manage user keys.
+// This script remains current for special cases like root, site_admin, and monitor
 //
 // Basic usage:
 // keys.php?role=admin (all PlanetLab administrators)
@@ -23,15 +23,8 @@ global $adm;
 $persons = array();
 $keys = array();
 
-// backwards compatibility with the old 4.2 API
-global $__PLC_API_VERSION;
-if ( ! method_exists ($adm,"GetInterfaces"))
-  $__PLC_API_VERSION = 4.2;
-else
-  $__PLC_API_VERSION = 4.3;
-
 if (!empty($_REQUEST['role'])) {
-  // XXX Implement API query filters
+  // API cannot filter on role_ids nor roles 
   // $persons = $adm->GetPersons(array('roles' => array($_REQUEST['role'])));
   $all_persons = $adm->GetPersons();
   foreach ($all_persons as $person) {
@@ -55,7 +48,7 @@ if (isset($_REQUEST['site_admin']) && isset($_REQUEST['node_id'])) {
   if (isset($node)) {
     // Look up the site
     $sites = $adm->GetSites(array($node['site_id']));
-    // Can't filter on roles so have to bruit force through entire userlist of site.
+    // Can't filter on roles so have to brute force through entire userlist of site.
     if ($sites && $sites[0]['person_ids']) {
       $all_persons = $adm->GetPersons($sites[0]['person_ids']);
       if (!empty($all_persons))
