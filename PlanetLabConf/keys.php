@@ -33,6 +33,8 @@ if (!empty($_REQUEST['role'])) {
     }
   }
 }
+
+// {ple,pl}_monitor user is created on the nodes by the monitor-runlevelagent init script.
 if (isset($_REQUEST[PLC_SLICE_PREFIX . '_monitor'])) {
   $user = $adm->GetPersons(array('first_name' => 'Site', 'last_name' => 'Assistant'));
   if (!empty($user)) {
