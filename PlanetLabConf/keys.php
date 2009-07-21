@@ -34,13 +34,16 @@ if (!empty($_REQUEST['role'])) {
   }
 }
 
-// {ple,pl}_monitor user is created on the nodes by the monitor-runlevelagent init script.
-if (isset($_REQUEST[PLC_SLICE_PREFIX . '_monitor'])) {
-  $user = $adm->GetPersons(array('first_name' => 'Site', 'last_name' => 'Assistant'));
-  if (!empty($user)) {
-    $persons[] = $user[0];
-  }
-}
+//
+// NOTE: this user is not used by the monitor for the moment.
+//
+/* // {ple,pl}_monitor user is created on the nodes by the monitor-runlevelagent init script. */
+/* if (isset($_REQUEST[PLC_SLICE_PREFIX . '_monitor'])) { */
+/*   $user = $adm->GetPersons(array('first_name' => 'Site', 'last_name' => 'Assistant')); */
+/*   if (!empty($user)) { */
+/*     $persons[] = $user[0]; */
+/*   } */
+/* } */
 
 if (isset($_REQUEST['site_admin']) && isset($_REQUEST['node_id'])) {
   $nodes = $adm->GetNodes(array(intval($_REQUEST['node_id'])));
