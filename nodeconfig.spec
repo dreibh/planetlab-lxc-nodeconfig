@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 4.3
-%define taglevel 4
+%define taglevel 5
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -103,6 +103,11 @@ chmod 700 /var/log/bm
 /var/www/html/yum
 
 %changelog
+* Mon Sep 07 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.3-5
+- new script for updating the exentions set
+- keys.php reviewed
+- cleanup useless scripts
+
 * Sat Jul 04 2009 Stephen Soltesz <soltesz@cs.princeton.edu> - nodeconfig-4.3-4
 - add two views to the PLC config data, limited and unlimited.
 - unlimited view reports all values.  Requires the 'infrastructure=1' tag and
