@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 4.3
-%define taglevel 5
+%define taglevel 6
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -103,6 +103,10 @@ chmod 700 /var/log/bm
 /var/www/html/yum
 
 %changelog
+* Sun Nov 22 2009 Marc Fiuczynski <mef@cs.princeton.edu> - nodeconfig-4.3-6
+- For all MyPLC nodes deployed at Polish Telecom (PLC, PLE and CoBlitz),
+- use the TP local NTP servers.
+
 * Mon Sep 07 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-4.3-5
 - new script for updating the exentions set
 - keys.php reviewed
