@@ -40,7 +40,6 @@ if ( ! isset($_REQUEST['slicefamily'])) {
 # the nodegroups the node is part of
 $nodegroup_names=array();
 
-$deployment = "";
 if ( ! isset($_REQUEST['node_id'])) {
   print "# Warning : node_id not set\n";
  } else {
@@ -55,23 +54,11 @@ if ( ! isset($_REQUEST['node_id'])) {
     $nodegroup_names [] = $nodegroup_name;
     echo "# in nodegroup $nodegroup_name \n" ;
   }
-  $node_tag_ids = $nodes[0]['node_tag_ids'];
-  $node_tags = $adm->GetNodeTags($node_tag_ids);
-  foreach ($node_tags as $node_tag) {
-    if ($node_tag['tagname'] == 'deployment') {
-      $deployment = $node_tag['value'];
-      break;
-    }
-  }
  }
 
 $topdir=$_SERVER['DOCUMENT_ROOT'] . "/install-rpms/";
 $topurl="https://$PLC_BOOT_HOST" . "/install-rpms/";
 
-if ($deployment == 'alpha') {
-  $topdir = $topdir . "alpha/";
-  $topurl = $topurl . "alpha/";
-}
 
 # locate the planetlab repo for this node family & nodegroup
 $repo=NULL;
