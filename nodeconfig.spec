@@ -17,7 +17,8 @@ License: PlanetLab
 Group: System Environment/Daemons
 Source0: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch: noarch
+# cannot do this as of f12
+#BuildArch: noarch
 
 Vendor: PlanetLab
 Packager: PlanetLab Central <support@planet-lab.org>
