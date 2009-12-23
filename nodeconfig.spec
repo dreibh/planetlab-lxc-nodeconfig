@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 4.3
-%define taglevel 6
+%define taglevel 7
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -104,6 +104,16 @@ chmod 700 /var/log/bm
 /var/www/html/yum
 
 %changelog
+* Wed Dec 23 2009 Marc Fiuczynski <mef@cs.princeton.edu> - nodeconfig-4.3-7
+- - decompose PlanetLabConf/sysctl.php into sysctl.conf and
+- sysctl-ip_forward.php. This is in prep of phasing out the latter
+- altogether, as enabling ip_forwarding should be something that is
+- managed by NM.
+- - PlanetLabConf/ntptickers.php migrated PlanetLabConf/ntp/step-tickers.php
+- - Added sfa_config.php
+- - updated ntp server set for .de (german) nodes.
+- - f12 related changes from Thierry/Baris
+
 * Sun Nov 22 2009 Marc Fiuczynski <mef@cs.princeton.edu> - nodeconfig-4.3-6
 - For all MyPLC nodes deployed at Polish Telecom (PLC, PLE and CoBlitz),
 - use the TP local NTP servers.
