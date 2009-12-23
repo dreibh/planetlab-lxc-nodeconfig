@@ -1,2 +1,3 @@
 server tock.fh-augsburg.de
-server tack.fh-augsburg.de
+server timeserver.rwth-aachen.de
+server clock.redhat.com
