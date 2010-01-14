@@ -72,7 +72,7 @@ pushd nodeconfig
 
 echo "* nodeconfig: Installing PlanetLabConf pages"
 
-for dir in boot PlanetLabConf PLCAPI ; do
+for dir in PlanetLabConf PLCAPI ; do
     mkdir -p $RPM_BUILD_ROOT/var/www/html/$dir
     rsync -a --exclude .svn ./$dir/ $RPM_BUILD_ROOT/var/www/html/$dir/
 done
@@ -98,7 +98,6 @@ chmod 700 /var/log/bm
 
 %files
 %defattr(-,root,root,-)
-/var/www/html/boot
 /var/www/html/PlanetLabConf
 /var/www/html/PLCAPI
 /var/www/html/yum
