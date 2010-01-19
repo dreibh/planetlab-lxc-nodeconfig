@@ -85,6 +85,12 @@ install -D -m 644 ./yum/%{distroname}/yum.conf		     $RPM_BUILD_ROOT/var/www/htm
 # expose the (fcdistro-dependant) stock.repo as				    https://<plc>/yum/stock.repo
 install -D -m 644 ./yum/%{distroname}/yum.myplc.d/stock.repo $RPM_BUILD_ROOT/var/www/html/yum/stock.repo
 
+# Install db-config.d files
+echo "* Installing db-config.d files"
+mkdir -p ${RPM_BUILD_ROOT}/etc/planetlab/db-config.d
+cp db-config.d/* ${RPM_BUILD_ROOT}/etc/planetlab/db-config.d
+chmod 444 ${RPM_BUILD_ROOT}/etc/planetlab/db-config.d/*
+
 popd
 
 %clean
