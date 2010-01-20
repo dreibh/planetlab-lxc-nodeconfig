@@ -77,7 +77,7 @@ for dir in PlanetLabConf PLCAPI ; do
     rsync -a --exclude .svn ./$dir/ $RPM_BUILD_ROOT/var/www/html/$dir/
 done
 
-# the yum area -- se db-config
+# the yum area -- see db-config
 # expose (fixed) myplc.repo.php as				            https://<plc>/yum/myplc.repo.php
 install -D -m 644 ./yum/myplc.repo.php			     $RPM_BUILD_ROOT/var/www/html/yum/myplc.repo.php
 # expose the fcdistro-dependant yum.conf as				    https://<plc>/yum/yum.conf
@@ -107,6 +107,7 @@ chmod 700 /var/log/bm
 /var/www/html/PlanetLabConf
 /var/www/html/PLCAPI
 /var/www/html/yum
+/etc/planetlab/db-config.d
 
 %changelog
 * Wed Dec 23 2009 Marc Fiuczynski <mef@cs.princeton.edu> - nodeconfig-4.3-7
