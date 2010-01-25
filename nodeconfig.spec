@@ -4,8 +4,8 @@
 %define url $URL: svn+ssh://thierry@svn.planet-lab.org/svn/WWW/trunk/PLCWWW.spec $
 
 %define name nodeconfig
-%define version 4.3
-%define taglevel 7
+%define version 5.0
+%define taglevel 0
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -159,4 +159,4 @@ chmod 700 /var/log/bm
 - former content has moved down into PlanetLabConf
 
 
-%define module_current_branch 4.2
+%define module_current_branch 4.3
