@@ -28,8 +28,6 @@ URL: %(echo %{url} | cut -d ' ' -f 2)
 # We use set everywhere
 Requires: php >= 5.0
 Requires: PLCAPI >= 4.3
-# need the apache user at install-time
-Requires: httpd 
 
 %description
 
@@ -43,32 +41,9 @@ reasons these scripts get installed in /var/www/html/PlanetLabConf.
 %setup -q
 
 %build
-pushd nodeconfig/yum
-
-KEXCLUDE="exclude=$(../../build/getkexcludes.sh)"
-
-# expand list of kexcludes
-for filein in $(find . -name '*.in') ; do
-    file=$(echo $filein | sed -e "s,\.in$,,")
-    sed -e "s,@KEXCLUDE@,$KEXCLUDE,g" $filein > $file
-done
-
-# scan fcdistros and catenate all repos in 'stock.repo' so db-config can be distro-independant
-
-for fcdistro in $(ls); do
-    [ -d $fcdistro ] || continue
-    pushd $fcdistro/yum.myplc.d
-    rm -f stock.repo
-    cat *.repo > stock.repo
-    popd
-done
-
-popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-pushd nodeconfig
 
 echo "* nodeconfig: Installing PlanetLabConf pages"
 
@@ -77,36 +52,21 @@ for dir in PlanetLabConf PLCAPI ; do
     rsync -a --exclude .svn ./$dir/ $RPM_BUILD_ROOT/var/www/html/$dir/
 done
 
-# the yum area -- see db-config
-# expose (fixed) myplc.repo.php as				            https://<plc>/yum/myplc.repo.php
-install -D -m 644 ./yum/myplc.repo.php			     $RPM_BUILD_ROOT/var/www/html/yum/myplc.repo.php
-# expose the fcdistro-dependant yum.conf as				    https://<plc>/yum/yum.conf
-install -D -m 644 ./yum/%{distroname}/yum.conf		     $RPM_BUILD_ROOT/var/www/html/yum/yum.conf
-# expose the (fcdistro-dependant) stock.repo as				    https://<plc>/yum/stock.repo
-install -D -m 644 ./yum/%{distroname}/yum.myplc.d/stock.repo $RPM_BUILD_ROOT/var/www/html/yum/stock.repo
-
 # Install db-config.d files
 echo "* Installing db-config.d files"
 mkdir -p ${RPM_BUILD_ROOT}/etc/planetlab/db-config.d
 cp db-config.d/* ${RPM_BUILD_ROOT}/etc/planetlab/db-config.d
 chmod 444 ${RPM_BUILD_ROOT}/etc/planetlab/db-config.d/*
 
-popd
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-# the boot manager upload area
-mkdir -p /var/log/bm
-chown apache:apache /var/log/bm
-chmod 700 /var/log/bm
 
 %files
 %defattr(-,root,root,-)
 /var/www/html/PlanetLabConf
 /var/www/html/PLCAPI
-/var/www/html/yum
 /etc/planetlab/db-config.d
 
 %changelog
