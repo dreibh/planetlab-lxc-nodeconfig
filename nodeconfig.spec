@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 5.0
-%define taglevel 0
+%define taglevel 1
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -70,6 +70,11 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Fri Jan 29 2010 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-1
+- first working version of 5.0:
+- pld.c/, db-config.d/ and nodeconfig/ scripts should now sit in the module they belong to
+- the yum/ and boot/ subdirs have moved away from here
+
 * Wed Dec 23 2009 Marc Fiuczynski <mef@cs.princeton.edu> - nodeconfig-4.3-7
 - - decompose PlanetLabConf/sysctl.php into sysctl.conf and
 - sysctl-ip_forward.php. This is in prep of phasing out the latter
