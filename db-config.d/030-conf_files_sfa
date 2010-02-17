@@ -5,8 +5,9 @@
 
 conf_files = [
 
-# sfa
+# sfa config files for the SFA Component Manager (sfa-cm)
     # /etc/sfa/sfa_config
+    # component config file  
     {'enabled': True,
      'source': u'PlanetLabConf/sfa_config.php', 
      'dest': u'/etc/sfa/sfa_config.py', 
@@ -17,6 +18,19 @@ conf_files = [
      'postinstall_cmd': '', 
      'error_cmd': '', 
      'ignore_cmd_errors': False, 
+     'always_update': False},
+    # /etc/cron.d/sfa_component_setup.cron
+    # jobs to update slice gids and trusted certs on a component  
+    {'enabled': True,
+     'source': u'PlanetLabConf/sfa_component_setup_cron.php',
+     'dest': u'/etc/cron.d/sfa_component_setup.cron',
+     'file_permissions': u'644',
+     'file_owner': u'root',
+     'file_group': u'root',
+     'preinstall_cmd': u'',
+     'postinstall_cmd': 'service crond reload',
+     'error_cmd': '',
+     'ignore_cmd_errors': False,
      'always_update': False}
 
     ]
