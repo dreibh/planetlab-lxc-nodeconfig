@@ -5,6 +5,6 @@ HOME=/
 #
 # minute hour day-of-month month day-of-week user command
 # download the trusted gids from the registry every hour 
-0 */1 * * *  root /usr/bin/sfa_component_setup.py -c > /dev/null 2>&1
+5 */6 * * *  root /usr/bin/sfa_component_setup.py -c > /dev/null 2>&1
 # download the slice gids every 30 minutes
 */30 * * * *  root /usr/bin/sfa_component_setup.py -g > /dev/null 2>&1
