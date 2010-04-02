@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 5.0
-%define taglevel 1
+%define taglevel 2
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Fri Apr 02 2010 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-2
+- new php scripts for configuring sfa component cron
+
 * Fri Jan 29 2010 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-1
 - first working version of 5.0:
 - pld.c/, db-config.d/ and nodeconfig/ scripts should now sit in the module they belong to
