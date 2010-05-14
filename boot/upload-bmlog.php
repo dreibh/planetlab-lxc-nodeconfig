@@ -28,6 +28,18 @@ $ip = $_SERVER['REMOTE_ADDR'];
 $hostname=$default_hostname;
 // locate hostname from DB based on this IP
 $interfaces=$adm->GetInterfaces(array("ip"=>$ip));
+
+if (empty($interfaces) ) {  // maybe its a node with a NAT'd IP addresses
+  // look up an interface tag using the public IP address value
+  $interfacetags=$adm->GetInterfaceTags(array("tagname"=>"public_ip_address","value"=>$ip));
+  if (! empty($interfacetags)) {
+    // using the interface_id now get the interface with the node_id information
+    $interface_id=$interfacetags[0]['interface_id'];
+    $interfaces=$adm->GetInterfaces($interface_id);
+    // fall thru to the conditional below ...
+  }
+ }
+
 if (! empty($interfaces) ) {
   $interface=$interfaces[0];
   $node_id=$interface['node_id'];
