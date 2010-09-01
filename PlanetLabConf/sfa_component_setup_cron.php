@@ -7,7 +7,7 @@
 
 $default_name = "sfa_component_setup.cron";
 $file_name = $default_name;
-if (file_exists($filename)) {
+if (file_exists($file_name)) {
     readfile($file_name);
 }
 exit();
