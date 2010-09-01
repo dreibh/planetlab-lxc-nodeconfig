@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 5.0
-%define taglevel 2
+%define taglevel 3
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Wed Sep 01 2010 Baris Metin <Talip-Baris.Metin@sophia.inria.fr> - nodeconfig-5.0-3
+- check file before reading the configuration.
+
 * Fri Apr 02 2010 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-2
 - new php scripts for configuring sfa component cron
 
