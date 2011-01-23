@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 5.0
-%define taglevel 3
+%define taglevel 4
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Sun Jan 23 2011 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-4
+- trashed sfa_component_setup job & conf file
+
 * Wed Sep 01 2010 Baris Metin <Talip-Baris.Metin@sophia.inria.fr> - nodeconfig-5.0-3
 - check file before reading the configuration.
 
