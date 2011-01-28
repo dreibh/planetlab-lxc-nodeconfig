@@ -1,7 +1,4 @@
 <?php
-//
-// $Id$
-//
 
 // Get admin API handle
 require_once 'plc_api.php';
@@ -10,26 +7,13 @@ global $adm;
 $ip_forward = 0;
 
 // Look up the node
-// backwards compatibility with the old 4.2 API
-global $__PLC_API_VERSION;
-if ( ! method_exists ($adm,"GetInterfaces"))
-  $__PLC_API_VERSION = 4.2;
-else
-  $__PLC_API_VERSION = 4.3;
-
-if ($__PLC_API_VERSION==4.2)
-  $interfaces = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-else
-  $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
 
 if (!empty($interfaces)) {
   $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
   if (!empty($nodes)) {
     $node = $nodes[0];
-    if ($__PLC_API_VERSION==4.2)
-      $interfaces = $adm->GetInterfaces($node['nodenetwork_ids']);
-    else
-      $interfaces = $adm->GetInterfaces($node['interface_ids']);
+    $interfaces = $adm->GetInterfaces($node['interface_ids']);
 
     foreach ($interfaces as $interface) {
       // Nodes with proxy socket interfaces need to be able to forward
@@ -44,7 +28,6 @@ if (!empty($interfaces)) {
 
 ?>
 
-# $Id$
 #
 # sysctl configuration file to optionally enable/disable IP forwarding
 #

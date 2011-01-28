@@ -19,11 +19,7 @@ $file_name = $config_directory . $file_prefix . $default_name;
 
 // Look up the node
 
-// backwards compatibility with the old 4.2 API
-if ( ! method_exists ($adm,"GetInterfaces"))
-  $interfaces = $adm->GetNodeNetworks(array('ip' => $_SERVER['REMOTE_ADDR']));
-else
-  $interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
+$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
 
 if (!empty($interfaces)) {
   $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
