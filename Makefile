@@ -1,4 +1,3 @@
-### $Id$
 #
 # how to push a working directoy to a running plc
 #

@@ -6,8 +6,6 @@
 // Mark Huang <mlhuang@cs.princeton.edu>
 // Copyright (C) 2006 The Trustees of Princeton University
 //
-// $Id$
-//
 
 // Try the new plc_config.php file first
 include 'plc_config.php';

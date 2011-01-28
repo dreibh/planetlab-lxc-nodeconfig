@@ -13,8 +13,6 @@
 // Aaron Klingaman <alk@cs.princeton.edu>
 // Copyright (C) 2004 The Trustees of Princeton University
 //
-// $Id$
-//
 
 // Get admin API handle
 require_once 'plc_api.php';
