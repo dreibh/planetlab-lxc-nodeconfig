@@ -2,7 +2,7 @@
 
 %define name nodeconfig
 %define version 5.0
-%define taglevel 4
+%define taglevel 5
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Tue Feb 01 2011 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-5
+- remove backward compat to GetNodeNetworks and the like
+
 * Sun Jan 23 2011 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-4
 - trashed sfa_component_setup job & conf file
 
