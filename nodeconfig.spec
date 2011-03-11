@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 4.3
-%define taglevel 7
+%define taglevel 8
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -104,6 +104,9 @@ chmod 700 /var/log/bm
 /var/www/html/yum
 
 %changelog
+* Fri Mar 11 2011 S.Çağlar Onur <caglar@verivue.com> - nodeconfig-4.3-8
+- add sl6 support
+
 * Wed Dec 23 2009 Marc Fiuczynski <mef@cs.princeton.edu> - nodeconfig-4.3-7
 - - decompose PlanetLabConf/sysctl.php into sysctl.conf and
 - sysctl-ip_forward.php. This is in prep of phasing out the latter
