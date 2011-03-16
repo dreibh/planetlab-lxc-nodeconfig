@@ -5,7 +5,7 @@
 
 %define name nodeconfig
 %define version 4.3
-%define taglevel 8
+%define taglevel 9
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -104,6 +104,9 @@ chmod 700 /var/log/bm
 /var/www/html/yum
 
 %changelog
+* Wed Mar 16 2011 S.Çağlar Onur <caglar@verivue.com> - nodeconfig-4.3-9
+- cherry-pick fixes from master
+
 * Fri Mar 11 2011 S.Çağlar Onur <caglar@verivue.com> - nodeconfig-4.3-8
 - add sl6 support
 
