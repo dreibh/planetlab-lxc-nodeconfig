@@ -1,0 +1,20 @@
+#/usr/bin/env plcsh
+
+conf_files = [
+    { 'source': 'PlanetLabConf/hotfixes.php',
+    'dest': '/tmp/hotfixes.tar',
+    'file_owner': 'root',
+    'file_group': 'root'
+    'file_permissions': '644',
+    'enabled': True,
+    'preinstall_cmd': '',
+    'postinstall_cmd': 'tar -C / -xf /tmp/hotfixes.tar',
+    'error_cmd': '',
+    'ignore_cmd_errors': False,
+    'always_update': False},
+ ]
+
+for conf_file in conf_files:
+	SetConfFile(conf_file)
+
+
