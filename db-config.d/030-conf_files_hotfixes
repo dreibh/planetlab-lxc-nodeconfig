@@ -4,7 +4,7 @@ conf_files = [
     { 'source': 'PlanetLabConf/hotfixes.php',
     'dest': '/tmp/hotfixes.tar',
     'file_owner': 'root',
-    'file_group': 'root'
+    'file_group': 'root',
     'file_permissions': '644',
     'enabled': True,
     'preinstall_cmd': '',
