@@ -2,7 +2,7 @@
 
 %define name nodeconfig
 %define version 5.0
-%define taglevel 5
+%define taglevel 6
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Fri Feb 24 2012 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-6
+- support for hotfixes
+
 * Tue Feb 01 2011 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-5
 - remove backward compat to GetNodeNetworks and the like
 
