@@ -7,12 +7,29 @@ tags:
 
 .PHONY: tags
 
-########## make sync PLCHOST=hostname VSERVER=vservername
-ifdef PLCHOST
-ifdef VSERVER
-PLCSSH:=root@$(PLCHOST):/vservers/$(VSERVER)
+########## make sync 
+# 2 forms are supported
+# (*) if your plc root context has direct ssh access:
+# make sync PLC=private.one-lab.org
+# (*) otherwise, for test deployments, use on your testmaster
+# $ run export
+# and cut'n paste the export lines before you run make sync
+
+ifdef PLC
+SSHURL:=root@$(PLC):/
+SSHCOMMAND:=ssh root@$(PLC)
+else
+ifdef PLCHOSTLXC
+SSHURL:=root@$(PLCHOSTLXC):/var/lib/lxc/$(GUESTNAME)/rootfs
+SSHCOMMAND:=ssh root@$(PLCHOSTLXC) ssh $(GUESTHOSTNAME)
+else
+ifdef PLCHOSTVS
+SSHURL:=root@$(PLCHOSTVS):/vservers/$(GUESTNAME)
+SSHCOMMAND:=ssh root@$(PLCHOSTVS) vserver $(GUESTNAME) exec
 endif
 endif
+endif
+
 
 LOCAL_RSYNC_EXCLUDES	:= --exclude '*.pyc' 
 RSYNC_EXCLUDES		:= --exclude .svn --exclude CVS --exclude '*~' --exclude TAGS $(LOCAL_RSYNC_EXCLUDES)
@@ -20,11 +37,14 @@ RSYNC_COND_DRY_RUN	:= $(if $(findstring n,$(MAKEFLAGS)),--dry-run,)
 RSYNC			:= rsync -a -v $(RSYNC_COND_DRY_RUN) $(RSYNC_EXCLUDES)
 
 sync:
-ifeq (,$(PLCSSH))
-	echo "sync: You must define PLCHOST and VSERVER on the command line"
-	echo " e.g. make sync PLCHOST=private.one-lab.org VSERVER=myplc01" ; exit 1
+ifeq (,$(SSHURL))
+	@echo "sync: I need more info from the command line, e.g."
+	@echo "  make sync PLC=boot.planetlab.eu"
+	@echo "  make sync PLCHOSTVS=.. GUESTNAME=.."
+	@echo "  make sync PLCHOSTLXC=.. GUESTNAME=.. GUESTHOSTNAME=.."
+	@exit 1
 else
-	+$(RSYNC) PlanetLabConf boot PLCAPI $(PLCSSH)/var/www/html/
-	ssh root@$(PLCHOST) vserver $(VSERVER) exec apachectl graceful
+	+$(RSYNC) PlanetLabConf boot PLCAPI $(SSHURL)/var/www/html/
+	$(SSHCOMMAND) apachectl graceful
 endif
 
