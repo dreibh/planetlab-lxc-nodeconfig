@@ -2,7 +2,7 @@
 
 %define name nodeconfig
 %define version 5.0
-%define taglevel 6
+%define taglevel 7
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Mon Apr 16 2012 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-7
+- no change, just reworked make sync to cope with lxc-hosted tests
+
 * Fri Feb 24 2012 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.0-6
 - support for hotfixes
 
