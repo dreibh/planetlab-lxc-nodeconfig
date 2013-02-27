@@ -1,8 +1,8 @@
 #
 
 %define name nodeconfig
-%define version 5.0
-%define taglevel 7
+%define version 5.2
+%define taglevel 0
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -24,7 +24,7 @@ URL: %{SCMURL}
 
 # We use set everywhere
 Requires: php >= 5.0
-Requires: PLCAPI >= 4.3
+Requires: plcapi >= 5.2
 
 %description
 
