@@ -16,20 +16,16 @@ $default_name = "default";
 $file_name = $config_directory . $file_prefix . $default_name;
 
 // Look up the node
-
-$interfaces = $adm->GetInterfaces(array('ip' => $_SERVER['REMOTE_ADDR']));
-
-if (!empty($interfaces)) {
-  $nodes = $adm->GetNodes(array($interfaces[0]['node_id']));
-  if (!empty($nodes)) {
-    $node = $nodes[0];
-  }
+$nodes = $adm->GetNodes(array('node_id' => (int)$_GET['node_id']));
+if (!empty($nodes)) {
+  $node = $nodes[0];
 }
 
 if (!isset($node)) {
   readfile($file_name); 
   exit();
 }
+
 
 $problem_models = array("Dell Precision 340", "Unknown");
 
