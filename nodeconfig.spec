@@ -2,7 +2,7 @@
 
 %define name nodeconfig
 %define version 5.2
-%define taglevel 2
+%define taglevel 3
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Tue Dec 10 2013 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.2-3
+- ntp.conf.php uses POST[node_id] instead of finding out caller's IP
+
 * Tue Apr 23 2013 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.2-2
 - pruned sfa_cofig.php
 
