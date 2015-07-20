@@ -49,6 +49,14 @@ if (!empty($sites)) {
 print( "# node $hostname site $site_name $mylat $mylong $model\n");
 print( "driftfile /var/lib/ntp/ntp.drift\n" );
 print( "statsdir /var/log/ntpstats/\n" );
+print( "disable monitor\n" );
+print( "# Permit time synchronization with our time source, but do not\n");
+print( "# permit the source to query or modify the service on this system.\n");
+print( "restrict default kod nomodify notrap nopeer noquery\n");
+print( "restrict -6 default kod nomodify notrap nopeer noquery\n");
+print( "restrict 127.0.0.1\n");
+print( "restrict -6 ::1\n");
+
 if (is_numeric(array_search($model, $problem_models))) {
   print( "tinker stepout 0\n" );
 }
