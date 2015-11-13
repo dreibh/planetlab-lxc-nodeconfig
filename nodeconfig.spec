@@ -2,7 +2,7 @@
 
 %define name nodeconfig
 %define version 5.2
-%define taglevel 4
+%define taglevel 5
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/planetlab/db-config.d
 
 %changelog
+* Fri Nov 13 2015 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.2-5
+- do not try to add root_ssh_key.pub to authorized_keys in nodes
+
 * Fri Mar 21 2014 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - nodeconfig-5.2-4
 - tweaks in node's ntp.conf
 
