@@ -62,8 +62,13 @@ if (isset($_REQUEST['site_admin']) && isset($_REQUEST['node_id'])) {
   }
 }
 
-if (isset($_REQUEST['root']))
-  $keys[] = array('key' => file_get_contents(PLC_ROOT_SSH_KEY_PUB));
+// Thierry on July 20 2015
+// this has ceased to work ages ago with php5, as /etc/planetlab is not
+// allowed to php - which is right
+// exposing only admin's public keys is quite enough
+// which will be a relief for /var/log/php.log where this message is all over the place
+// if (isset($_REQUEST['root']))
+//  $keys[] = array('key' => file_get_contents(PLC_ROOT_SSH_KEY_PUB));
 
 
 if (!empty($persons)) {
